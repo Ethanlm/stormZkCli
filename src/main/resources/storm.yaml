@@ -1,0 +1,5 @@
+storm.zookeeper.servers:
+     - "localhost"
+#     - "server2"
+#
+nimbus.seeds: ["localhost"]
