@@ -16,5 +16,5 @@ This project provides a command line interface for storm developers to easily pr
 
 ## Running
 
-* Change [storm.yaml](https://github.com/Ethanlm/stormZkCli/blob/master/src/main/resources/storm.yaml) accordingly
+* Change storm.yaml accordingly
 * Run `bin/stormZkCli.sh`

@@ -25,9 +25,9 @@
 
     <files>
         <file>
-            <source>${project.basedir}/conf/stormzk.yaml.example</source>
+            <source>${project.basedir}/conf/storm.yaml.example</source>
             <outputDirectory>/conf</outputDirectory>
-            <destName>stormzk.yaml</destName>
+            <destName>storm.yaml</destName>
             <fileMode>0644</fileMode>
         </file>
     </files>
