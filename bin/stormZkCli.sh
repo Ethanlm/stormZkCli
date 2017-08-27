@@ -1,10 +1,26 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-export STORM_ZK_CLI_HOME=`pwd`/$0/../../
-#echo $STORM_ZK_CLI_HOME
+PRG="${0}"
+STORM_ZK_BIN_DIR=`dirname ${PRG}`
+export STORM_ZK_BASE_DIR=`cd ${STORM_ZK_BIN_DIR}/..;pwd`
+export STORM_ZK_CONF_DIR="${STORM_ZK_CONF_DIR:-$STORM_ZK_BASE_DIR/conf}"
+export STORM_ZK_CONF_FILE="${STORM_ZK_CONF_FILE:-$STORM_ZK_BASE_DIR/conf/stormzk.yaml}"
+export STORM_ZK_LIB_DIR="${STORM_ZK_LIB_DIR:-$STORM_ZK_BASE_DIR/lib}"
 
-if [ -f $STORM_ZK_CLI_HOME/target/stormZkCli-1.0-SNAPSHOT.jar ]; then
-  java -cp $STORM_ZK_CLI_HOME/target/stormZkCli-1.0-SNAPSHOT.jar storm.zookeeper.StormZkClient
-else
-   echo "jar file not found"
-fi
+
+echo "loading jars"
+
+cp=""
+FILES=${STORM_ZK_LIB_DIR}/*.jar
+
+for jar_file in $FILES
+do
+   cp=${cp}:${jar_file}
+done
+
+
+echo "starting server"
+
+jvmOpts="-Dstorm.conf.file="${STORM_ZK_CONF_FILE}
+
+java -cp $cp $jvmOpts storm.zookeeper.StormZkClient
